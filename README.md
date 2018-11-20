@@ -266,3 +266,31 @@ if key in adict:
 他方の `if` 文を使ったスタイルは「 LBYL 」スタイル（ Look Before You Leap ）と呼ばれます。
 
 - [LBYL ― Glossary — Python 3.x documentation](https://docs.python.org/3/glossary.html#term-lbyl)
+
+## 複数の例外のキャッチ
+
+複数の例外をキャッチする場合は、「小さい例外」（例外クラスの継承ツリーにおいて子孫側の例外）を先に、「大きい例外」を後にキャッチします。
+
+```python
+class CustomBaseError(Exception):
+    pass
+
+class InvalidValueError(CustomBaseError):
+    pass
+
+# ○:
+try:
+    myfunc()
+except InvalidValueError as e:
+    ...
+except CustomBaseError as e:
+    ...
+
+# ✕:
+try:
+    myfunc()
+except CustomBaseError as e:
+    ...
+except InvalidValueError as e:
+    ...
+```
