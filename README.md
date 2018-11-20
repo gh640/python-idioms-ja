@@ -80,6 +80,14 @@ for i in range(min(len(animals), len(animals_en))):
 2 つの `iterable` の長さが異なる場合、 `zip()` は短い方の長さだけループを回します。
 長い方の長さにあわせたい場合は `itertools.zip_longest()` を使用します。
 
+```python
+from itertools import zip_longest
+
+# ○:
+for animal, animal_en in zip_longest(animals, animals_en):
+    ...
+```
+
 ## ファイル利用
 
 ファイルを利用する際は原則 `with` 文（コンテキストマネージャ）を使用します。
