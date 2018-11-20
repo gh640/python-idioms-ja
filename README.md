@@ -88,6 +88,26 @@ for animal, animal_en in zip_longest(animals, animals_en):
     ...
 ```
 
+## `list` のコピー
+
+`list` のコピー（複製）には `copy()` メソッドを使用します。
+
+```python
+alist = [...]
+
+# ○:
+cloned_list = alist.copy()
+```
+
+Python 3.3 よりも前（ 3.2 以下）のバージョンでは `copy()` メソッドが提供されていないので次の書き方を使います。
+
+```python
+alist = [...]
+
+# ○:
+cloned_list = alist[:]
+```
+
 ## ファイル利用
 
 ファイルを利用する際は原則 `with` 文（コンテキストマネージャ）を使用します。
