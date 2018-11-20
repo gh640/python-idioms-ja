@@ -21,3 +21,20 @@ for url in urls:
 for i in range(len(urls)):
     print(urls[i])
 ```
+
+## ファイル利用
+
+ファイルを利用する際は原則 `with` 文（コンテキストマネージャ）を使用します。
+
+```python
+path = 'sample.txt'
+
+# ○:
+with open(path) as f:
+    ...
+
+# ✕:
+f = open(path)
+...
+f.close()
+```
