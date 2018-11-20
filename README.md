@@ -2,6 +2,24 @@
 
 Python 3.x のイディオム集です。
 
+## 多岐分岐
+
+他の言語にある `switch`/`case` のようなことをしたい場合は `dict` を使用します。
+
+```python
+# ○:
+def printer_factory(name):
+    printer_map = {
+        'html': HtmlPrinter,
+        'pdf': PdfPrinter,
+    }
+
+    try:
+        return printer_map[name]()
+    except KeyError as e:
+        raise ValueError('不正な name が指定されました: {}。'.format(name))
+```
+
 ## `for` ループ
 
 `iterable` のループには原則インデックスを使いません。
