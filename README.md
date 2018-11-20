@@ -257,12 +257,14 @@ class Query:
         return self
 
 
-figure1 = (Query().select('figure')
-        .where('rhand', 'チョキ')
-        .where('lhand', 'グー'))
-figure2 = (Query().select('figure')
-        .where('rhand', 'パー')
-        .where('lhand', 'パー'))
+figure1 = (Query()
+           .select(['figure'])
+           .where('rhand', 'チョキ')
+           .where('lhand', 'グー'))
+figure2 = (Query()
+           .select(['figure'])
+           .where('rhand', 'パー')
+           .where('lhand', 'パー'))
 ```
 
 ## `dict` のキーの存在チェック
