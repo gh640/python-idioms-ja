@@ -142,6 +142,39 @@ if len(links) > 0:
     ...
 ```
 
+## 引数の数が多い関数
+
+引数の数が多い関数を使用するときは、実行側でキーワード指定で引数を渡します。
+
+```python
+def easy_to_misuse_func(file, column, cond, coerce):
+    ...
+
+# ○:
+easy_to_misuse_func(file=a, column=b, cond=c, coerce=d)
+
+# ✕:
+easy_to_misuse_func(a, b, c, d)
+```
+
+関数の定義側で引数の間に `*,` を置くことで、キーワード指定での引数渡しを強制することもできます。
+
+```python
+def easy_to_misuse_func(*, file, column, cond, coerce):
+    ...
+
+easy_to_misuse_func(a, b, c, d)
+# =>
+# TypeError: easy_to_misuse_func() takes 0 positional arguments but 4 were given
+
+easy_to_misuse_func(file=a, column=b, cond=c, coerce=d)
+# => OK
+```
+
+> Parameters after “\*” or “\*identifier” are keyword-only parameters and may only be passed used keyword arguments.
+
+- [Function definitions ― Compound statements — Python 3 documentation](https://docs.python.org/3/reference/compound_stmts.html#function-definitions)
+
 ## `dict` のキーの存在チェック
 
 `dict` に存在するかどうかわからないキーで要素にアクセスする場合は例外処理を使用します。
