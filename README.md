@@ -162,6 +162,34 @@ if len(links) > 0:
     ...
 ```
 
+## `not` が含まれる条件式
+
+`not` が含まれる条件式は人間が読んで読みやすい形（≒英語に近い形）で書きます。
+
+```python
+# ○:
+if value is not None:
+    ...
+
+# ✕:
+if not value is None:
+    ...
+```
+
+```python
+# ○:
+if key not in adict:
+    ...
+
+# ✕:
+if not key in adict:
+    ...
+
+# ✕:
+if not (key in adict):
+    ...
+```
+
 ## 引数の数が多い関数
 
 引数の数が多い関数を使用するときは、実行側でキーワード指定で引数を渡します。
