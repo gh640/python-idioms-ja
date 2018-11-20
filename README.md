@@ -40,6 +40,26 @@ for i in range(len(urls)):
     print(urls[i])
 ```
 
+## インデックスが必要な `for` ループ
+
+インデックスが必要な `for` ループには `enumerate()` を使用します。
+
+```python
+animals = [
+    '子',
+    '丑',
+    '寅',
+]
+
+# ○:
+for i, animal in enumerate(animals, start=1):
+    print('順位 {:02d}: {}'.format(i, animal))
+# =>
+# 順位 01: 子
+# 順位 02: 丑
+# 順位 03: 寅
+```
+
 ## ファイル利用
 
 ファイルを利用する際は原則 `with` 文（コンテキストマネージャ）を使用します。
