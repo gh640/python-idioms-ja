@@ -121,3 +121,23 @@ is_ok, content = get_page('https://www.yahoo.co.jp/')
 ```
 
 `tuple` ではまかないきれなくなったら、 `collections.namedtuple` や独自クラスのインスタンスを使います。
+
+## コレクション系の値の非空チェック
+
+`list` ・ `tuple` ・ `dict` 等のコレクション系の値の非空チェックは名前を `if` 文に直接渡して行います。
+
+```python
+links = magical_func_collecting_links(url)
+
+# ○:
+if links:
+    ...
+
+# ✕:
+if len(links):
+    ...
+
+# ✕:
+if len(links) > 0:
+    ...
+```
