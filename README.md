@@ -175,6 +175,24 @@ easy_to_misuse_func(file=a, column=b, cond=c, coerce=d)
 
 - [Function definitions ― Compound statements — Python 3 documentation](https://docs.python.org/3/reference/compound_stmts.html#function-definitions)
 
+## 関数のデフォルト引数
+
+関数のデフォルト引数には原則 mutable な値は使いません。
+
+```python
+# ✕:
+def merge_dicts(d1={}, d2={}):
+    d1.update(d2)
+    return d1
+
+merge_dicts(d2={'a': 1})
+# => {'a': 1}
+merge_dicts(d2={'b': 2})
+# => {'a': 1, 'b': 2}
+merge_dict()
+# => {'a': 1, 'b': 2}
+```
+
 ## `dict` のキーの存在チェック
 
 `dict` に存在するかどうかわからないキーで要素にアクセスする場合は例外処理を使用します。
