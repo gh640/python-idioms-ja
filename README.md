@@ -60,7 +60,7 @@ for i, animal in enumerate(animals, start=1):
 # 順位 03: 寅
 ```
 
-## 複数の `iterable` を同時に回す
+## 複数の `iterable` を同時にループで回す
 
 `for` ループで複数の `iterable` を同時に回したい場合は `zip` を使用します。
 
