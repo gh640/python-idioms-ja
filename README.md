@@ -2,6 +2,34 @@
 
 Python 3.x のイディオム集です。
 
+## `not` が含まれる条件式
+
+`not` が含まれる条件式は人間が読んで読みやすい形（≒英語に近い形）で書きます。
+
+```python
+# ○:
+if value is not None:
+    ...
+
+# ✕:
+if not value is None:
+    ...
+```
+
+```python
+# ○:
+if key not in adict:
+    ...
+
+# ✕:
+if not key in adict:
+    ...
+
+# ✕:
+if not (key in adict):
+    ...
+```
+
 ## 多岐分岐
 
 他の言語にある `switch`/`case` のようなことをしたい場合は `dict` を使用します。
@@ -159,34 +187,6 @@ if len(links):
 
 # ✕:
 if len(links) > 0:
-    ...
-```
-
-## `not` が含まれる条件式
-
-`not` が含まれる条件式は人間が読んで読みやすい形（≒英語に近い形）で書きます。
-
-```python
-# ○:
-if value is not None:
-    ...
-
-# ✕:
-if not value is None:
-    ...
-```
-
-```python
-# ○:
-if key not in adict:
-    ...
-
-# ✕:
-if not key in adict:
-    ...
-
-# ✕:
-if not (key in adict):
     ...
 ```
 
