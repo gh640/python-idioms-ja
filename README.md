@@ -241,6 +241,30 @@ merge_dict()
 # => {'a': 1, 'b': 2}
 ```
 
+## メソッドチェーン
+
+自作のクラスでメソッドを連ねて呼び出したい場合は、メソッドが `self` （または新しいインスタンス）を返すようにします。
+
+```python
+# ○:
+class Query:
+    def select(self, columns):
+        ...
+        return self
+
+    def where(self, column, value):
+        ...
+        return self
+
+
+figure1 = (Query().select('figure')
+        .where('rhand', 'チョキ')
+        .where('lhand', 'グー'))
+figure2 = (Query().select('figure')
+        .where('rhand', 'パー')
+        .where('lhand', 'パー'))
+```
+
 ## `dict` のキーの存在チェック
 
 `dict` に存在するかどうかわからないキーで要素にアクセスする場合は例外処理を使用します。
