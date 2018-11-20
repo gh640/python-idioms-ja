@@ -140,7 +140,7 @@ def get_page(url):
 is_ok, content = get_page('https://www.yahoo.co.jp/')
 ```
 
-`tuple` ではまかないきれなくなったら、 `collections.namedtuple` や独自クラスのインスタンスを使います。
+`tuple` ではまかなえなくなったら、 `collections.namedtuple` や独自クラスのインスタンスを使います。
 
 ## コレクション系の値の非空チェック
 
