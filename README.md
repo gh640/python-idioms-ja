@@ -141,3 +141,29 @@ if len(links):
 if len(links) > 0:
     ...
 ```
+
+## `dict` のキーの存在チェック
+
+`dict` に存在するかどうかわからないキーで要素にアクセスする場合は例外処理を使用します。
+
+```python
+# ○:
+try:
+    value = adict[key]
+except KeyError:
+    ...
+...
+
+# ✕:
+if key in adict:
+    value = adict[key]
+    ...
+```
+
+このスタイルは「 EAFP 」スタイル（ Easier to Ask for Forgiveness than Permission ）と呼ばれたりします。
+
+- [EAFP ― Glossary — Python 3.x documentation](https://docs.python.org/3/glossary.html#term-eafp)
+
+他方の `if` 文を使ったスタイルは「 LBYL 」スタイル（ Look Before You Leap ）と呼ばれます。
+
+- [LBYL ― Glossary — Python 3.x documentation](https://docs.python.org/3/glossary.html#term-lbyl)
