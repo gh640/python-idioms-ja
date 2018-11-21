@@ -50,7 +50,7 @@ def printer_factory(name):
 
 ## `for` ループ
 
-`iterable` のループには原則インデックスを使いません。
+iterable のループには原則インデックスを使いません。
 
 ```python
 urls = [
@@ -88,9 +88,9 @@ for i, animal in enumerate(animals, start=1):
 # 順位 03: 寅
 ```
 
-## 複数の `iterable` を同時にループで回す
+## 複数の iterable を同時にループで回す
 
-`for` ループで複数の `iterable` を同時に回したい場合は `zip` を使用します。
+`for` ループで複数の iterable を同時に回したい場合は `zip` を使用します。
 
 ```python
 animals = ['猫', '馬', '河童']
@@ -105,7 +105,7 @@ for i in range(min(len(animals), len(animals_en))):
     print('{} は英語で {} です。'.format(animals[i], animals_en[i]))
 ```
 
-2 つの `iterable` の長さが異なる場合、 `zip()` は短い方の長さだけループを回します。
+2 つの iterable の長さが異なる場合、 `zip()` は短い方の長さだけループを回します。
 長い方の長さにあわせたい場合は `itertools.zip_longest()` を使用します。
 
 ```python
