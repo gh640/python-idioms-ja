@@ -2,6 +2,49 @@
 
 Python 3.x のイディオム集です。
 
+## コレクション系の値の名前
+
+`list` ・ `tuple` 等のコレクション系の値の名前には単語の複数形を使います。
+
+```python
+# ○:
+numbers = [1, 3, 5, ...]
+urls = (
+    'https://www.google.co.jp',
+    'https://www.facebook.com',
+    'https://twitter.com',
+)
+menu_items = (
+    ('/about/', '○○とは'),
+    ('/services/', 'サービス'),
+    ('/contact/', '問い合わせ'),
+)
+
+# ✕:
+number = [...]
+url = (
+    ...,
+)
+menu_item = (
+    ...,
+)
+```
+
+`for` ループや内包表記でその要素を取り出すときは単数形を使います。
+スコープが狭く意味が明白な場合は 1 文字変数を使っても大丈夫です。
+
+```python
+# ○:
+for n in numbers:
+    ...
+
+for url in urls:
+    ...
+
+for i in menu_items:
+    ...
+```
+
 ## `not` が含まれる条件式
 
 `not` が含まれる条件式は人間が読んで読みやすい形（≒英語に近い形）で書きます。
