@@ -30,6 +30,26 @@ if not (key in adict):
     ...
 ```
 
+## コレクション系の値の非空チェック
+
+`list` ・ `tuple` ・ `dict` 等のコレクション系の値の非空チェックは名前を `if` 文に直接渡して行います。
+
+```python
+links = magical_func_collecting_links(url)
+
+# ○:
+if links:
+    ...
+
+# ✕:
+if len(links):
+    ...
+
+# ✕:
+if len(links) > 0:
+    ...
+```
+
 ## 多岐分岐
 
 他の言語にある `switch`/`case` のようなことをしたい場合は `dict` を使用します。
@@ -169,26 +189,6 @@ is_ok, content = get_page('https://www.yahoo.co.jp/')
 ```
 
 `tuple` ではまかなえなくなったら、 `collections.namedtuple` や独自クラスのインスタンスを使います。
-
-## コレクション系の値の非空チェック
-
-`list` ・ `tuple` ・ `dict` 等のコレクション系の値の非空チェックは名前を `if` 文に直接渡して行います。
-
-```python
-links = magical_func_collecting_links(url)
-
-# ○:
-if links:
-    ...
-
-# ✕:
-if len(links):
-    ...
-
-# ✕:
-if len(links) > 0:
-    ...
-```
 
 ## 引数の数が多い関数
 
