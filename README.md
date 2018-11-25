@@ -338,6 +338,18 @@ if key in adict:
 
 - [LBYL ― Glossary — Python 3.x documentation](https://docs.python.org/3/glossary.html#term-lbyl)
 
+## バージョンによって場所が異なる関数やクラスの `import`
+
+モジュールのバージョンによって場所が異なる関数やクラスの `import` には `try` `except` を使用します。
+
+```python
+# ○:
+try:
+    from urllib.parse import urlparse
+except:
+    from urlparse import urlparse
+```
+
 ## 複数の例外のキャッチ
 
 複数の例外をキャッチする場合は、「小さい例外」（例外クラスの継承ツリーにおいて子孫側の例外）を先に、「大きい例外」を後にキャッチします。
