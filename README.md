@@ -103,6 +103,8 @@ def printer_factory(name):
     printer_map = {
         'html': HtmlPrinter,
         'pdf': PdfPrinter,
+        'toml': TomlPrinter,
+        'dsv': DsvPrinter,
     }
 
     try:
