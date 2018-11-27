@@ -295,8 +295,8 @@ easy_to_misuse_func(file=a, column=b, cond=c, coerce=d)
 ```python
 # ○:
 def merge_dicts(d1=None, d2=None):
-    d1 = d1 if d1 is not None else {}
-    d2 = d2 if d2 is not None else {}
+    d1 = d1 or {}
+    d2 = d2 or {}
 
     d1.update(d2)
     return d1
