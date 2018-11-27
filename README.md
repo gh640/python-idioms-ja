@@ -19,6 +19,7 @@ Python 3.x のイディオム集です。
 - [メソッドチェーン](#メソッドチェーン)
 - [`dict` のキーの存在チェック](#dict-のキーの存在チェック)
 - [バージョンによって場所が異なる関数やクラスの `import`](#バージョンによって場所が異なる関数やクラスの-import)
+- [行の長さ制限を守るための改行](#行の長さ制限を守るための改行)
 - [複数の例外のキャッチ](#複数の例外のキャッチ)
 
 ## コレクション系の値の名前
@@ -367,6 +368,56 @@ try:
     from urllib.parse import urlparse
 except:
     from urlparse import urlparse
+```
+
+## 行の長さ制限を守るための改行
+
+コードをそのまま書くと 80 文字や 100 文字等の行長さ制限にひっかかる場合は、 `()` を使用したり式を分割したりして制限以内に収めます。
+
+関数・メソッド呼び出し:
+
+```python
+# ○:
+class Student(models.Model):
+    year_in_school = models.CharField(
+        max_length=2,
+        choices=YEAR_IN_SCHOOL_CHOICES,
+        default=FRESHMAN,
+        db_index=True,
+    )
+
+# ✕
+class Student(models.Model):
+    year_in_school = models.CharField(max_length=2, choices=YEAR_IN_SCHOOL_CHOICES, default=FRESHMAN, db_index=True)
+
+```
+
+メソッドチェーン:
+
+```python
+# ○:
+class PublishedBookRelatedManager(models.Manager):
+    def get_queryset(self):
+        books_published = Book.published_objects.all()
+        return (
+            super()
+            .get_queryset()
+            .distinct()
+            .filter(book__in=books_published)
+        )
+
+# ✕:
+class PublishedBookRelatedManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().distinct().filter(book__in=Book.published_objects.all())
+
+# ✕:
+class PublishedBookRelatedManager(models.Manager):
+    def get_queryset(self):
+        books_published = Book.published_objects.all()
+        return super().get_queryset() \
+            .distinct() \
+            .filter(book__in=books_published)
 ```
 
 ## 複数の例外のキャッチ
