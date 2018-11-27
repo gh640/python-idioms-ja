@@ -293,6 +293,14 @@ easy_to_misuse_func(file=a, column=b, cond=c, coerce=d)
 関数のデフォルト引数には原則 mutable な値は使いません。
 
 ```python
+# ○:
+def merge_dicts(d1=None, d2=None):
+    d1 = d1 if d1 is not None else {}
+    d2 = d2 if d2 is not None else {}
+
+    d1.update(d2)
+    return d1
+
 # ✕:
 def merge_dicts(d1={}, d2={}):
     d1.update(d2)
