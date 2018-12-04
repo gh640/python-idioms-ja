@@ -12,6 +12,7 @@ Python 3.x のイディオム集です。
 - [インデックスが必要な `for` ループ](#インデックスが必要な-for-ループ)
 - [複数の iterable の `for` ループ](#複数の-iterable-の-for-ループ)
 - [`list` のコピー](#list-のコピー)
+- [`dict` のサブセットの取得](#dict-のサブセットの取得)
 - [ファイル利用](#ファイル利用)
 - [複数の戻り値](#複数の戻り値)
 - [引数の数が多い関数](#引数の数が多い関数)
@@ -219,6 +220,23 @@ alist = [...]
 
 # ○:
 cloned_list = alist[:]
+```
+
+## `dict` のサブセットの取得
+
+`dict` のサブセットの取得には `{}` を使った `dict` の内包表記を使用します。
+
+```python
+adict = {'tokyo': 'T', 'hokkaido': 'H', 'okinawa': 'O', 'kagoshima': 'K'}
+targets = ['tokyo', 'kagoshima']
+
+# ○:
+subdict = {k: adict[k] for k in targets}
+# {'tokyo': 'T', 'kagoshima': 'K'}
+
+# ○:
+subdict = {k: adict[k] for k in adict.keys() & targets}
+# {'kagoshima': 'K', 'tokyo': 'T'}
 ```
 
 ## ファイル利用
