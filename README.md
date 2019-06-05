@@ -5,8 +5,8 @@ Python 3.x のイディオム集です。
 ## 目次
 
 - [コレクション系の値の名前](#コレクション系の値の名前)
-- [`not` が含まれる条件式](#not-が含まれる条件式)
 - [コレクション系の値の非空チェック](#コレクション系の値の非空チェック)
+- [`not` が含まれる条件式](#not-が含まれる条件式)
 - [多岐分岐](#多岐分岐)
 - [`for` ループ](#for-ループ)
 - [インデックスが必要な `for` ループ](#インデックスが必要な-for-ループ)
@@ -67,6 +67,26 @@ for i in menu_items:
     ...
 ```
 
+## コレクション系の値の非空チェック
+
+`list` ・ `tuple` ・ `dict` 等のコレクション系の値の非空チェックは名前を `if` 文に直接渡して行います。
+
+```python
+links = magical_func_collecting_links(url)
+
+# ○:
+if links:
+    ...
+
+# ✕:
+if len(links):
+    ...
+
+# ✕:
+if len(links) > 0:
+    ...
+```
+
 ## `not` が含まれる条件式
 
 `not` が含まれる条件式は人間が読んで読みやすい形（≒英語の語順に近い形）で書きます。
@@ -92,26 +112,6 @@ if not key in adict:
 
 # ✕:
 if not (key in adict):
-    ...
-```
-
-## コレクション系の値の非空チェック
-
-`list` ・ `tuple` ・ `dict` 等のコレクション系の値の非空チェックは名前を `if` 文に直接渡して行います。
-
-```python
-links = magical_func_collecting_links(url)
-
-# ○:
-if links:
-    ...
-
-# ✕:
-if len(links):
-    ...
-
-# ✕:
-if len(links) > 0:
     ...
 ```
 
