@@ -477,6 +477,21 @@ class PublishedBookRelatedManager(models.Manager):
             .filter(book__in=books_published)
 ```
 
+文字列:
+
+```python
+class MyFormView(FormView):
+    def form_valid(self, form):
+        # この形で書かれた文字列リテラルは自動的に連結されるので `+` 演算子は不要です
+        message = (
+            'お問い合わせいただきありがとうございます。'
+            'ご入力いただいたメールアドレスに 3 営業日以内にご連絡差し上げます。'
+            '連絡が無い場合は大変お手数ですが再度お問い合わせいただきますようお願いいたします。'
+        )
+        messages.success(message)
+        return super().form_valid(form)
+```
+
 ## 複数の例外のキャッチ
 
 複数の例外をキャッチする場合は、「小さい例外」（例外クラスの継承ツリーにおいて子孫側の例外）を先に、「大きい例外」を後にキャッチします。
