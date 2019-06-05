@@ -19,6 +19,7 @@ Python 3.x のイディオム集です。
 - [関数のデフォルト引数](#関数のデフォルト引数)
 - [メソッドチェーン](#メソッドチェーン)
 - [`dict` のキーの存在チェック](#dict-のキーの存在チェック)
+- [複数の `dict` のマージ](#複数の-dict-のマージ)
 - [バージョンによって場所が異なる関数やクラスの `import`](#バージョンによって場所が異なる関数やクラスの-import)
 - [行の長さ制限を守るための改行](#行の長さ制限を守るための改行)
 - [複数の例外のキャッチ](#複数の例外のキャッチ)
@@ -383,6 +384,36 @@ if key in adict:
 他方の `if` 文を使ったスタイルは「 LBYL 」スタイル（ Look Before You Leap ）と呼ばれます。
 
 - [LBYL ― Glossary — Python 3.x documentation](https://docs.python.org/3/glossary.html#term-lbyl)
+
+## 複数の `dict` のマージ
+
+複数の `dict` を組み合わせて新たな `dict` を作りたいときは `dict` のアンパック演算を使用します。
+
+```python
+dict1 = {...}
+dict2 = {...}
+dict3 = {...}
+
+merged_dict = {**dict1, **dict2, **dict3}
+```
+
+キーの衝突が発生した場合は後に方に記述された `dict` の値が残ります:
+
+```python
+items1 = {'コーラ': 'ペプシ', 'ジンジャーエール': 'ウィルキンソン'}
+items2 = {'ジンジャーエール': 'カナダドライ'}
+
+merged = {**items1, **items2}
+# => {'コーラ': 'ペプシ', 'ジンジャーエール': 'カナダドライ'}
+```
+
+`dict` の数が不定の場合は `dict` の内容表記（ dict comprehension ）を使うとシンプルに書けます。
+
+```python
+many_dicts = [dict1, dict2, ..., dictn]
+
+merged_dict = {k: v for d in many_dicts for k, v in d.items()}
+```
 
 ## バージョンによって場所が異なる関数やクラスの `import`
 
