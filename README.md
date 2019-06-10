@@ -17,6 +17,7 @@ Python 3.x のイディオム集です。
 - [複数の戻り値](#複数の戻り値)
 - [引数の数が多い関数](#引数の数が多い関数)
 - [関数のデフォルト引数](#関数のデフォルト引数)
+- [インタフェース](#インタフェース)
 - [メソッドチェーン](#メソッドチェーン)
 - [`dict` のキーの存在チェック](#dict-のキーの存在チェック)
 - [複数の `dict` のマージ](#複数の-dict-のマージ)
@@ -332,6 +333,34 @@ merge_dicts(d2={'b': 2})
 merge_dict()
 # => {'a': 1, 'b': 2}
 ```
+
+## インタフェース
+
+Python 3 にはオブジェクト指向言語で一般的な「インタフェース」が言語仕様として備わっていません。
+
+「継承先クラスにメソッドの実装を矯正する」という意味でインタフェースに近い挙動を実現するには、クラス `ABC` と例外 `NotImplementedError` を使用します。
+
+```python
+from abc import ABC
+
+
+class ControllerInterface(ABC):
+    def dispatch(self, request):
+        raise NotImplementedError()
+
+
+class HomePageController(ControllerInterface):
+    def dispatch(self, request):
+        ...
+
+
+class InvalidController(ControllerInterface):
+    # `dispatch()` が定義されていないので `dispatch()` が呼び出されたときに `NotImplementedError` があがる
+    pass
+```
+
+ただし、この方法ではクラスの宣言時にメソッドの実装がチェックされるわけではありません。
+テスト等でカバーする必要があります。
 
 ## メソッドチェーン
 
