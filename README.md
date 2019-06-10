@@ -15,6 +15,10 @@ Python 3.x のイディオム集です。
 - [複数の `dict` のマージ](#複数の-dict-のマージ)
 - [`list` のコピー](#list-のコピー)
 
+内包表記
+
+- [複雑な内包表記の記述](#複雑な内包表記の記述)
+
 条件式
 
 - [コレクション系の値の非空チェック](#コレクション系の値の非空チェック)
@@ -193,6 +197,44 @@ alist = [...]
 # ○:
 cloned_list = alist[:]
 ```
+
+## 内包表記
+
+### 複雑な内包表記の記述
+
+複雑な内包表記を読みやすくするには、処理の一部をローカルの関数にして抽出する、小さなジェネレータ式に分割して記述する、等の方法があります。
+
+```python
+# 整理前の内包表記
+    def get_target_field_labels(self):
+        return [
+            self.FIELD_LABEL_MAP.get(field.name, '')
+            for field in seld.model.get_fields()
+            if isinstance(field, models.CharField) and field.editable
+        ]
+
+# 処理の一部をローカルの関数にして抽出する
+    def get_target_field_labels(self):
+        def label(field):
+            return self.FIELD_LABEL_MAP.get(field.name, '')
+
+        def is_target(field):
+            return isinstance(field, models.CharField) and field.editable
+
+        return [
+            label(field)
+            for field in seld.model.get_fields()
+            if is_target(field)
+        ]
+
+# 小さなジェネレータ式に分割して記述する
+    def get_target_field_labels(self):
+        target_fields = (x for x in seld.model.get_fields()
+                         if isinstance(x, models.CharField) and x.editable)
+        labels = (self.FIELD_LABEL_MAP.get(x.name) for x in target_fields)
+        return list(labels)
+```
+
 
 ## 条件式
 
