@@ -14,6 +14,7 @@ Python 3.x のイディオム集です。
 - [`dict` のサブセットの取得](#dict-のサブセットの取得)
 - [複数の `dict` のマージ](#複数の-dict-のマージ)
 - [`list` のコピー](#list-のコピー)
+- [`list` の長さを変える](#list-の長さを変える)
 - [ネストされた `list` の要素の組み換え](#ネストされた-list-の要素の組み換え)
 
 内包表記
@@ -197,6 +198,52 @@ alist = [...]
 
 # ○:
 cloned_list = alist[:]
+```
+
+### `list` の長さを変える
+
+`list` の長さを変えるには次のようなやり方があります。
+
+短くする:
+
+```python
+original = [x ** 2 for x in range(11)]
+# => [0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+# 先頭を残して長さを 3 にする
+original[:3]
+# => [0, 1, 4]
+
+# 末尾を残して長さを 3 にする
+original[-3:]
+# => [64, 81, 100]
+```
+
+長くする:
+
+```python
+# 末尾に追加する
+original = [x ** 2 for x in range(3)]  # => [0, 1, 4]
+length = 5
+original += [None for _ in range(length - len(original))]
+original
+# => [0, 1, 4, None, None]
+
+# 先頭に追加する
+original = [x ** 2 for x in range(3)]  # => [0, 1, 4]
+length = 5
+original = [None for _ in range(length - len(original))] + original
+original
+# => [None, None, 0, 1, 4]
+```
+
+規定の長さに揃える:
+
+```python
+def normalize_length(alist, length, fallback):
+    """list の長さを揃える"""
+    shortened = alist[:length]
+    return shortened + [fallback for _ in range(length - len(shortened))]
 ```
 
 ### ネストされた-`list`-の要素の組み換え
