@@ -621,7 +621,34 @@ is_ok, content = get_page('https://www.yahoo.co.jp/')
 
 Python 3 にはオブジェクト指向言語で一般的な「インタフェース」が言語仕様として備わっていません。
 
-「継承先クラスにメソッドの実装を矯正する」という意味でインタフェースに近い挙動を実現するには、クラス `ABC` と例外 `NotImplementedError` を使用します。
+「継承先クラスにメソッドの実装を矯正する」という意味でインタフェースに近い挙動を実現するには、標準モジュール `abc` のクラス `ABC` とデコレータ `abc.abstractmethod` を使用します。
+
+```python
+import abc
+
+
+class ControllerInterface(abc.ABC):
+    @abc.abstractmethod
+    def dispatch(self, request):
+        pass
+
+
+class HomePageController(ControllerInterface):
+    def dispatch(self, request):
+        ...
+
+
+class InvalidController(ControllerInterface):
+    # `dispatch()` が定義されていないのでインスタンス生成時に `TypeError` があがる
+    pass
+```
+
+`abc.abstractmethod` に似たデコレータに以下のものがあります。
+
+- `abc.abstractclassmethod`
+- `abc.abstractstaticmethod`
+
+`abc.abstractmethod` のようにインスタンス生成時にチェックは走りませんが、例外 `NotImplementedError` を使用する方法もあります:
 
 ```python
 from abc import ABC
@@ -642,8 +669,7 @@ class InvalidController(ControllerInterface):
     pass
 ```
 
-ただし、この方法ではクラスの宣言時にメソッドの実装がチェックされるわけではありません。
-テスト等でカバーする必要があります。
+ただし、いずれの場合でもクラス宣言時にエラーがあがるわけではないため、インタフェースが正しく実装されていることの確認にはテスト等を使用する必要があります。
 
 ### メソッドチェーン
 
