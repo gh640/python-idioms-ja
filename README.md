@@ -427,6 +427,14 @@ animals = [
 ]
 
 # ○:
+for i, animal in enumerate(animals):
+    print('順位 {:02d}: {}'.format(i, animal))
+# =>
+# 順位 00: 子
+# 順位 01: 丑
+# 順位 02: 寅
+
+# ○:
 for i, animal in enumerate(animals, start=1):
     print('順位 {:02d}: {}'.format(i, animal))
 # =>
