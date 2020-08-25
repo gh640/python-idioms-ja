@@ -289,7 +289,10 @@ fulls
 複雑な内包表記を読みやすくするには、処理の一部をローカルの関数にして抽出する、小さなジェネレータ式に分割して記述する、等の方法があります。
 
 ```python
-# 整理前の内包表記
+class MyModel:
+    FIELD_LABEL_MAP = {...}
+
+    # 整理前: 複雑な内包表記
     def get_target_field_labels(self):
         return [
             self.FIELD_LABEL_MAP.get(field.name, '')
@@ -297,7 +300,7 @@ fulls
             if isinstance(field, models.CharField) and field.editable
         ]
 
-# 処理の一部をローカルの関数にして抽出する
+    # 整理後: 処理の一部をローカルの関数にして抽出する
     def get_target_field_labels(self):
         def label(field):
             return self.FIELD_LABEL_MAP.get(field.name, '')
@@ -311,7 +314,7 @@ fulls
             if is_target(field)
         ]
 
-# 小さなジェネレータ式に分割して記述する
+    # 整理後: 小さなジェネレータ式に分割して記述する
     def get_target_field_labels(self):
         target_fields = (x for x in seld.model.get_fields()
                          if isinstance(x, models.CharField) and x.editable)
