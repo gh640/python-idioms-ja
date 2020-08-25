@@ -266,7 +266,7 @@ def normalize_length(alist, length, fallback):
     return shortened + [fallback for _ in range(length - len(shortened))]
 ```
 
-### ネストされた-`list`-の要素の組み換え
+### ネストされた `list` の要素の組み換え
 
 ネストされた `list` （または `tuple` ）の要素を組み替えるには `*` 演算子（スプラット演算子）と `zip()` 関数を使うとシンプルに書けます。
 
