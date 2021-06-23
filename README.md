@@ -377,6 +377,26 @@ if not (key in adict):
 
 ### 多岐分岐
 
+Python 3.10 で `match` ~ `case` 構文が導入されたので、 Python 3.10 以降では `match` ~ `case` 構文を使います。
+
+```python
+# ○:
+def printer_factory(name):
+    match name:
+        case 'html':
+            return HtmlPrinter()
+        case 'pdf':
+            return PdfPrinter()
+        case 'toml':
+            return TomlPrinter()
+        case 'dsv':
+            return DsvPrinter()
+        case _:
+            raise ValueError(f'不正な name が指定されました: {name}。')
+```
+
+#### 以前の説明（ Python 3.9 以前）
+
 他の言語にある `switch`/`case` のようなことをしたい場合は `dict` を使用します。
 
 ```python
